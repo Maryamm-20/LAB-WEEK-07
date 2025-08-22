@@ -1,44 +1,43 @@
-from typing import List, Iterator
 import copy
 
 class Vector:
-    def _init_(self, coords: List[float]):
+    def _init_(self, coords):
         self.coords = coords
 
-    def get(self, i: int) -> float:
+    def get(self, i):
         return self.coords[i]
 
-    def set(self, i: int, val: float):
+    def set(self, i, val):
         self.coords[i] = val
 
-    def length(self) -> int:
+    def length(self):
         return len(self.coords)
 
-    def add(self, other: 'Vector') -> 'Vector':
+    def add(self, other):
         if self.length() != other.length():
             raise ValueError("Vectors must be of same length")
         return Vector([a + b for a, b in zip(self.coords, other.coords)])
 
-    def clone(self) -> 'Vector':
+    def clone(self):
         return copy.deepcopy(self)
 
-    def _str_(self) -> str:
+    def _str_(self):
         return f"Vector({self.coords})"
 
-    def _eq_(self, other: object) -> bool:
+    def _eq_(self, other):
         if not isinstance(other, Vector):
             return False
         return self.coords == other.coords
 
-    def _iter_(self) -> Iterator[float]:
+    def _iter_(self):
         return iter(self.coords)
 
-    def dot(self, other: 'Vector') -> float:
+    def dot(self, other):
         if self.length() != other.length():
             raise ValueError("Vectors must be of same length")
         return sum(a * b for a, b in zip(self.coords, other.coords))
 
-    def cross(self, other: 'Vector') -> 'Vector':
+    def cross(self, other):
         if self.length() != 3 or other.length() != 3:
             raise ValueError("Cross product only defined for 3D vectors")
         a = self.coords
